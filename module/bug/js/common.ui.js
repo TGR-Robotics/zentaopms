@@ -346,6 +346,30 @@ function loadAssignedToByModule(moduleID, productID)
     });
 }
 
+function removeTrunkBuild(items)
+{
+    if(!items) return items;
+    if(Array.isArray(items)) return items.filter(function(item)
+    {
+        const value = (item && typeof item === 'object') ? item.value : item;
+        return value != 'trunk';
+    });
+    if(typeof items === 'object')
+    {
+        const result = $.extend({}, items);
+        delete result.trunk;
+        return result;
+    }
+    return items;
+}
+
+function normalizeOpenedBuildValue(value)
+{
+    if(value === undefined || value === null || value === 0 || value === '0' || value === 'trunk') return '';
+    if(Array.isArray(value)) return value.filter(function(item){ return item && item != 'trunk' && item != '0'; });
+    return String(value).split(',').filter(function(item){ return item && item != 'trunk' && item != '0'; });
+}
+
 function loadProjectBuilds(projectID)
 {
     let branch = $('[name="branch"]').val();
@@ -359,9 +383,9 @@ function loadProjectBuilds(projectID)
         const link = $.createLink('build', 'ajaxGetProjectBuilds', 'projectID=' + projectID + '&productID=' + productID + '&varName=openedBuild&build=&branch=' + branch);
         $.getJSON(link, function(data)
         {
-            let buildID      = $('[name^="openedBuild"]').val();
+            let buildID      = normalizeOpenedBuildValue($('[name^="openedBuild"]').val());
             let $buildPicker = $('[name^="openedBuild"]').zui('picker');
-            $buildPicker.render({items: data});
+            $buildPicker.render({items: removeTrunkBuild(data)});
             $buildPicker.$.setValue(buildID);
             loadBuildActions();
         })
@@ -400,9 +424,9 @@ function loadProductBuilds(productID, type = 'normal', buildBox = 'all')
             const link = $.createLink('build', 'ajaxGetProductBuilds', 'productID=' + productID + '&varName=openedBuild&build=&branch=' + (branch == 0 ? 'all' : branch) + '&type=' + type);
             $.getJSON(link, function(data)
             {
-                let buildID      = $('[name^="openedBuild"]').val();
+                let buildID      = normalizeOpenedBuildValue($('[name^="openedBuild"]').val());
                 let $buildPicker = $('[name^="openedBuild"]').zui('picker');
-                $buildPicker.render({items: data});
+                $buildPicker.render({items: removeTrunkBuild(data)});
                 $buildPicker.$.setValue(buildID);
                 loadBuildActions();
             });
@@ -453,8 +477,8 @@ function loadExecutionBuilds(executionID, num)
         $.getJSON(link, function(data)
         {
             let $buildPicker = $('[name^="openedBuild"]').zui('picker');
-            $buildPicker.render({items: data});
-            $buildPicker.$.setValue(oldOpenedBuild);
+            $buildPicker.render({items: removeTrunkBuild(data)});
+            $buildPicker.$.setValue(normalizeOpenedBuildValue(oldOpenedBuild));
             loadBuildActions();
         });
     }

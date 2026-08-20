@@ -16,15 +16,24 @@ cid=1
 */
 $tester = new createBugTester();
 zenData('product')->loadYaml('product')->gen(1);
+$build = zenData('build');
+$build->id->range('1');
+$build->product->range('1');
+$build->project->range('0');
+$build->execution->range('0');
+$build->branch->range('0');
+$build->name->range('版本1');
+$build->deleted->range('0');
+$build->gen(1);
 $story = zenData('story');
 $story->id->setFields(array(array('range' => '2')));
 $story->version->setFields(array(array('range' => '1')));
 $story->gen(1);
 
 $bugs = array();
-$bugs[0] = array('title' => 'bug' . time(), 'deadline' => '2025-06-06', 'steps' => 'step1');
-$bugs[1] = array('title' => 'bug' . time(), 'deadline' => '2025-06-06', 'steps' => 'step2');
-$bugs[2] = array('title' => 'bug' . time(), 'deadline' => '2025-06-06', 'steps' => 'step3');
+$bugs[0] = array('title' => 'bug' . time(), 'openedBuild' => array('multiPicker' => '版本1'), 'deadline' => '2025-06-06', 'steps' => 'step1');
+$bugs[1] = array('title' => 'bug' . time(), 'openedBuild' => array('multiPicker' => '版本1'), 'deadline' => '2025-06-06', 'steps' => 'step2');
+$bugs[2] = array('title' => 'bug' . time(), 'openedBuild' => array('multiPicker' => '版本1'), 'deadline' => '2025-06-06', 'steps' => 'step3');
 
 $product = array();
 $product['productID']   = 1;

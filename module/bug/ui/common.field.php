@@ -27,10 +27,13 @@ $fields->field('module')
     ->items(data('moduleOptionMenu'))
     ->value(data('bug.moduleID'));
 
+$openedBuildValue = data('bug.buildID');
+if($openedBuildValue === 0 || $openedBuildValue === '0' || $openedBuildValue === 'trunk') $openedBuildValue = '';
+
 $fields->field('openedBuild')
     ->checkbox(array('text' => $lang->bug->allBugs, 'name' => 'allBuilds', 'checked' => data('allBuilds') ? true : false))
     ->control('inputGroup')
-    ->itemBegin('openedBuild[]')->control('picker')->items(data('builds'))->value(data('bug.buildID'))->multiple()->menu(array('checkbox' => true))->itemEnd();
+    ->itemBegin('openedBuild[]')->control('picker')->items(data('builds'))->value($openedBuildValue)->multiple()->menu(array('checkbox' => true))->itemEnd();
 
 $fields->field('assignedTo')
     ->checkbox(array('text' => $lang->bug->loadAll, 'name' => 'allUsers', 'checked' => data('allUsers') ? true : false))

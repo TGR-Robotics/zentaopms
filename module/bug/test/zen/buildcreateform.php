@@ -14,7 +14,7 @@ cid=15427
  - 属性productsCount @1
 - 测试构造创建Bug的数据
  - 属性branchesCount @1
- - 属性buildsCount @1
+ - 属性buildsCount @0
 - 测试构造创建Bug的数据
  - 属性moduleOptionMenuCount @1
  - 属性resultFilesCount @0
@@ -61,6 +61,6 @@ $bug->closedBy    = '';
 $bugTest = new bugZenTest();
 r($bugTest->buildCreateFormTest($bug)) && p('title,productMembers')                   && e('正常产品1-提Bug,6'); // 测试构造创建Bug的数据
 r($bugTest->buildCreateFormTest($bug)) && p('productName,productsCount')              && e('正常产品1,1');       // 测试构造创建Bug的数据
-r($bugTest->buildCreateFormTest($bug)) && p('branchesCount,buildsCount')              && e('1,1');               // 测试构造创建Bug的数据
+r($bugTest->buildCreateFormTest($bug)) && p('branchesCount,buildsCount')              && e('1,0');               // 测试构造创建Bug的数据
 r($bugTest->buildCreateFormTest($bug)) && p('moduleOptionMenuCount,resultFilesCount') && e('1,0');               // 测试构造创建Bug的数据
 r($bugTest->buildCreateFormTest($bug)) && p('plansCount,casesCount')                  && e('0,0');               // 测试构造创建Bug的数据

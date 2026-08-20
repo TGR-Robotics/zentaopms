@@ -50,8 +50,9 @@ class createBugTester extends tester
         {
             for($i = 0; $i < count($bugs); $i++)
             {
-                if(isset($bugs[$i]['title']))    $form->dom->{"title[" . ($i + 1) . "]"}->setValue($bugs[$i]['title']);
-                if(isset($bugs[$i]['deadline'])) $form->dom->{"deadline[" . ($i + 1) . "]"}->datePicker($bugs[$i]['deadline']);
+                if(isset($bugs[$i]['title']))       $form->dom->{"title[" . ($i + 1) . "]"}->setValue($bugs[$i]['title']);
+                if(isset($bugs[$i]['openedBuild'])) $form->dom->{"openedBuild[" . ($i + 1) . "][]"}->multipicker($bugs[$i]['openedBuild']);
+                if(isset($bugs[$i]['deadline']))    $form->dom->{"deadline[" . ($i + 1) . "]"}->datePicker($bugs[$i]['deadline']);
                 if(isset($bugs[$i]['steps']))    $form->dom->{"steps[" . ($i + 1) . "]"}->setValue($bugs[$i]['steps']);
                 if(isset($bugs[$i]['type']))     $form->dom->{"type[" . ($i + 1) . "]"}->picker($bugs[$i]['type']);
                 if(isset($bugs[$i]['pri']))      $form->dom->{"pri[" . ($i + 1) . "]"}->picker($bugs[$i]['pri']);

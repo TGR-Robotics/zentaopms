@@ -30,12 +30,26 @@ function setOpenedBuilds(link, $currentRow)
     {
         if(!builds) return;
 
+        if(Array.isArray(builds))
+        {
+            builds = builds.filter(function(item)
+            {
+                const value = (item && typeof item === 'object') ? item.value : item;
+                return value != 'trunk';
+            });
+        }
+        else if(typeof builds === 'object')
+        {
+            delete builds.trunk;
+        }
+
         let $row = $currentRow;
         while($row.length)
         {
             const $build = $row.find('[data-name="openedBuild"] .picker').zui('picker');
             $build.render({items: builds});
-            $build.$.setValue($build.$.value.split(','));
+            const currentValue = ($build.$.value || '').split(',').filter(function(value){ return value && value != 'trunk'; });
+            $build.$.setValue(currentValue);
 
             $row = $row.next('tr');
 

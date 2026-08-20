@@ -24,7 +24,7 @@ $config->bug->form->create['relatedBug']  = array('required' => false, 'type' =>
 $config->bug->form->create['color']       = array('required' => false, 'type' => 'string', 'default' => '');
 $config->bug->form->create['severity']    = array('required' => false, 'type' => 'int',    'default' => 3);
 $config->bug->form->create['pri']         = array('required' => false, 'type' => 'int',    'default' => 3);
-$config->bug->form->create['steps']       = array('required' => false, 'type' => 'string', 'default' => $lang->bug->tplStep . $lang->bug->tplResult . $lang->bug->tplExpect, 'control' => 'editor');
+$config->bug->form->create['steps']       = array('required' => false, 'type' => 'string', 'default' => $lang->bug->tplDefault, 'control' => 'editor');
 $config->bug->form->create['story']       = array('required' => false, 'type' => 'int',    'default' => 0);
 $config->bug->form->create['task']        = array('required' => false, 'type' => 'int',    'default' => 0);
 $config->bug->form->create['case']        = array('required' => false, 'type' => 'int',    'default' => 0);

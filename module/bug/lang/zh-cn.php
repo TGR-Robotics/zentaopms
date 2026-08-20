@@ -205,9 +205,17 @@ $lang->bug->legendRelated               = '其他信息';
 $lang->bug->legendThisWeekCreated       = '本周新增';
 
 /* 模板。*/
-$lang->bug->tplStep   = "<p>[步骤]</p><p></p>";
-$lang->bug->tplResult = "<p>[结果]</p><p></p>";
-$lang->bug->tplExpect = "<p>[期望]</p><p></p>";
+$lang->bug->tplStep    = "<p>[步骤]</p><p></p>";
+$lang->bug->tplResult  = "<p>[结果]</p><p></p>";
+$lang->bug->tplExpect  = "<p>[期望]</p><p></p>";
+$lang->bug->tplDefault = "<p>[测试环境-Test Environment]</p><p></p>"
+    . "<p>[机器SN-machine SN]</p><p></p>"
+    . "<p>[测试步骤-Test Steps]</p><p></p>"
+    . "<p>[测试结果-Test Result]</p><p></p>"
+    . "<p>[预期结果-Expected Result]</p><p></p>"
+    . "<p>[出现概率-Occurrence Probability]</p><p></p>"
+    . "<p>[log路径-log path]</p><p></p>"
+    . "<p>[备注-Remarks]</p><p></p>";
 
 /* 各个字段取值列表。*/
 $lang->bug->severityList[0] = '';

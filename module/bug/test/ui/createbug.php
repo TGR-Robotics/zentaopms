@@ -21,6 +21,15 @@ cid=1
 
 */
 zenData('product')->loadYaml('product')->gen(1);
+$build = zenData('build');
+$build->id->range('1');
+$build->product->range('1');
+$build->project->range('0');
+$build->execution->range('0');
+$build->branch->range('0');
+$build->name->range('版本1');
+$build->deleted->range('0');
+$build->gen(1);
 $tester = new createBugTester();
 
 $bug = array();
@@ -32,7 +41,7 @@ $project['extra']     = 'moduleID=0';
 r($tester->createDefaultBug($project, $bug)) && p('message,status') && e('bug表单必填项校验成功,SUCCESS'); //验证bug表单页必填项校验
 
 $bug['title']       = 'bug' . time();
-$bug['openedBuild'] = array('multiPicker' => '主干');
+$bug['openedBuild'] = array('multiPicker' => '版本1');
 $bug['assignedTo']  = 'admin';
 $bug['steps']       = 'steps';
 r($tester->createDefaultBug($project, $bug)) && p('message,status') && e('创建bug成功,SUCCESS'); //创建bug

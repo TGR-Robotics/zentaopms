@@ -50,6 +50,16 @@ $bug->story->range('0');
 $bug->openedBuild->range('trunk');
 $bug->gen(1);
 
+$build = zenData('build');
+$build->id->range('1');
+$build->product->range('1');
+$build->project->range('0');
+$build->execution->range('0');
+$build->branch->range('0');
+$build->name->range('版本1');
+$build->deleted->range('0');
+$build->gen(1);
+
 $user = zenData('user');
 $user->id->range('1-3');
 $user->account->range('admin, user1, user2');
@@ -75,7 +85,7 @@ $productAll = array('产品1公开', '产品2公开', '产品3私有');
 
 
 global $lang;
-$bug = array('title' => 'bug' . time(), 'openedBuild' => array('multiPicker' => '主干'));
+$bug = array('title' => 'bug' . time(), 'openedBuild' => array('multiPicker' => '版本1'));
 $user = array(
     'user1' => 'user1',
     'admin' => 'admin'
