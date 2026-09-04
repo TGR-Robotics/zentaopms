@@ -17,7 +17,11 @@ extension/pro/*
 extension/biz/*
 extension/max/*
 extension/xuan/*
+# TGR 二次开发提交到 extension/custom/<模块>/ext/，需要纳入版本库。
 extension/custom/*
+!extension/custom/.gitkeep
+!extension/custom/bug/
+!extension/custom/bug/**
 test/data/sql/
 .bak
 .idea
