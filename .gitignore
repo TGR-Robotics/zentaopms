@@ -23,6 +23,8 @@ extension/custom/*
 !extension/custom/bug/
 !extension/custom/bug/**
 test/data/sql/
+skills-lock.json
+.agents
 .bak
 .idea
 .tree
@@ -30,6 +32,7 @@ test/data/sql/
 .gitignore
 .DS_Store
 docker
+.codegraph
 .docker-sync
 CodeSniffer.conf
 test/runtime
